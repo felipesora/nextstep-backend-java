@@ -1,6 +1,7 @@
 package br.com.nextstep.model;
 
 import br.com.nextstep.model.enums.TipoConteudo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,7 +40,8 @@ public class Conteudo {
     private String link;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trilha_id")
+    @JoinColumn(name = "id_trilha")
+    @JsonIgnore
     private Trilha trilha;
 
     @Column(name = "data_criacao", updatable = false)
