@@ -14,7 +14,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "NS_ADMIN_USER", uniqueConstraints = {@UniqueConstraint(name = "EMAIL_UNIQUE", columnNames = "email")})
+@Table(name = "NS_ADMIN_USER", uniqueConstraints = {
+    @UniqueConstraint(
+            name = "UK_NS_ADMIN_USER_EMAIL",
+            columnNames = "email"
+    )}
+)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,7 +36,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @Column(nullable = false, length = 150, unique = true)
+    @Column(nullable = false, length = 150)
     private String email;
 
     @Column(nullable = false, length = 100)

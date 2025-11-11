@@ -2,6 +2,7 @@ package br.com.nextstep.service;
 
 import br.com.nextstep.dto.usuario.UsuarioRequestDTO;
 import br.com.nextstep.dto.usuario.UsuarioResponseDTO;
+import br.com.nextstep.exception.RegraNegocioException;
 import br.com.nextstep.mapper.UsuarioMapper;
 import br.com.nextstep.model.Usuario;
 import br.com.nextstep.repository.UsuarioRepository;
@@ -36,8 +37,12 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioResponseDTO salvar(UsuarioRequestDTO usuarioRequestDTO) {
-        var usuario = UsuarioMapper.toEntity(usuarioRequestDTO);
 
+        if (usuarioRepository.findUsuarioByEmail(usuarioRequestDTO.getEmail()).isPresent()) {
+            throw new RegraNegocioException("Já existe um usuário cadastrado com este e-mail.");
+        }
+
+        var usuario = UsuarioMapper.toEntity(usuarioRequestDTO);
         usuario.setSenha(passwordEncoder.encode(usuarioRequestDTO.getSenha()));
 
         var usuarioSalvo = usuarioRepository.save(usuario);
