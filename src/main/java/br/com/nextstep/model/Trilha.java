@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "NS_TRILHA")
@@ -39,6 +40,10 @@ public class Trilha {
     @Enumerated(EnumType.STRING)
     @Column(name = "nivel", nullable = false, length = 30)
     private NivelTrilha nivel;
+
+    @OneToMany(mappedBy = "trilha", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    @OrderBy("id ASC")
+    private List<Conteudo> conteudos;
 
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
