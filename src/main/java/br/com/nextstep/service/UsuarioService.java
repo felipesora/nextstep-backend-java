@@ -53,7 +53,11 @@ public class UsuarioService {
     public UsuarioResponseDTO atualizar(Long id, UsuarioRequestDTO usuarioRequestDTO) {
         var usuarioAtual = buscarEntidadeUsuarioPorId(id);
 
-        usuarioAtual.setId(id);
+        var usuarioComMesmoEmail = usuarioRepository.findUsuarioByEmail(usuarioRequestDTO.getEmail());
+        if (usuarioComMesmoEmail.isPresent() && !usuarioComMesmoEmail.get().getId().equals(id)) {
+            throw new RegraNegocioException("Já existe um usuário cadastrado com este e-mail.");
+        }
+
         usuarioAtual.setNome(usuarioRequestDTO.getNome());
         usuarioAtual.setEmail(usuarioRequestDTO.getEmail());
         if (usuarioRequestDTO.getSenha() != null && !usuarioRequestDTO.getSenha().isBlank()) {
