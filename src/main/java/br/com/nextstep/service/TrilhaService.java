@@ -54,7 +54,7 @@ public class TrilhaService {
         trilhaRepository.delete(trilha);
     }
 
-    private Trilha buscarEntidadeTrilhaPorId(Long id) {
+    public Trilha buscarEntidadeTrilhaPorId(Long id) {
         return trilhaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Trilha com id: " + id + " não encontrada"));
     }
