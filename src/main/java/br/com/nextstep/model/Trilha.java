@@ -2,6 +2,7 @@ package br.com.nextstep.model;
 
 import br.com.nextstep.model.enums.AreaTrilha;
 import br.com.nextstep.model.enums.NivelTrilha;
+import br.com.nextstep.model.enums.StatusTrilha;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -47,6 +48,10 @@ public class Trilha {
 
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 30)
+    private StatusTrilha status;
 
     @PrePersist
     protected void onCreate() {
