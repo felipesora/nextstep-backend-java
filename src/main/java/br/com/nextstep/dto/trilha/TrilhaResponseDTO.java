@@ -3,6 +3,7 @@ package br.com.nextstep.dto.trilha;
 import br.com.nextstep.dto.conteudo.ConteudoResponseDTO;
 import br.com.nextstep.model.enums.AreaTrilha;
 import br.com.nextstep.model.enums.NivelTrilha;
+import br.com.nextstep.model.enums.StatusTrilha;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id_trilha", "nome", "descricao", "area", "nivel", "conteudos", "data_criacao"})
+@JsonPropertyOrder({"id_trilha", "nome", "descricao", "area", "nivel", "status", "conteudos", "data_criacao"})
 public class TrilhaResponseDTO {
 
     @JsonProperty("id_trilha")
@@ -30,6 +31,8 @@ public class TrilhaResponseDTO {
     private AreaTrilha area;
 
     private NivelTrilha nivel;
+
+    private StatusTrilha status;
 
     private List<ConteudoResponseDTO> conteudos;
 

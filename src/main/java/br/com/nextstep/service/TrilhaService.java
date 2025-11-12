@@ -4,6 +4,7 @@ import br.com.nextstep.dto.trilha.TrilhaRequestDTO;
 import br.com.nextstep.dto.trilha.TrilhaResponseDTO;
 import br.com.nextstep.mapper.TrilhaMapper;
 import br.com.nextstep.model.Trilha;
+import br.com.nextstep.model.enums.StatusTrilha;
 import br.com.nextstep.repository.TrilhaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class TrilhaService {
     @Transactional
     public TrilhaResponseDTO salvar(TrilhaRequestDTO trilhaRequestDTO) {
         var trilha = TrilhaMapper.toEntity(trilhaRequestDTO);
+        trilha.setStatus(StatusTrilha.ATIVA);
         return TrilhaMapper.toResponseDTO(trilhaRepository.save(trilha));
     }
 
@@ -44,6 +46,7 @@ public class TrilhaService {
         trilhaAtual.setDescricao(trilhaRequestDTO.getDescricao());
         trilhaAtual.setArea(trilhaRequestDTO.getArea());
         trilhaAtual.setNivel(trilhaRequestDTO.getNivel());
+        trilhaAtual.setStatus(trilhaRequestDTO.getStatus());
 
         return TrilhaMapper.toResponseDTO(trilhaRepository.save(trilhaAtual));
     }

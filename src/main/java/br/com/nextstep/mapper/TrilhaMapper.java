@@ -23,6 +23,7 @@ public class TrilhaMapper {
                 trilha.getDescricao(),
                 trilha.getArea(),
                 trilha.getNivel(),
+                trilha.getStatus(),
                 conteudosDTO,
                 trilha.getDataCriacao()
         );
@@ -36,6 +37,7 @@ public class TrilhaMapper {
         trilha.setDescricao(dto.getDescricao());
         trilha.setArea(dto.getArea());
         trilha.setNivel(dto.getNivel());
+        trilha.setStatus(dto.getStatus());
         return trilha;
     }
 }
