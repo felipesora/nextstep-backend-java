@@ -1,6 +1,6 @@
 package br.com.nextstep.service;
 
-import br.com.nextstep.repository.UsuarioRepository;
+import br.com.nextstep.repository.UsuarioAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AutenticacaoService implements UserDetailsService {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioAdminRepository repository;
 
 
     @Override

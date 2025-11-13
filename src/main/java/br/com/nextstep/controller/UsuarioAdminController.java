@@ -1,8 +1,8 @@
 package br.com.nextstep.controller;
 
-import br.com.nextstep.dto.usuario.UsuarioRequestDTO;
-import br.com.nextstep.dto.usuario.UsuarioResponseDTO;
-import br.com.nextstep.service.UsuarioService;
+import br.com.nextstep.dto.usuarioAdmin.UsuarioAdminRequestDTO;
+import br.com.nextstep.dto.usuarioAdmin.UsuarioAdminResponseDTO;
+import br.com.nextstep.service.UsuarioAdminService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/usuarios/admin")
+public class UsuarioAdminController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioAdminService usuarioService;
 
     @GetMapping
-    public ResponseEntity<Page<UsuarioResponseDTO>> listarTodos(@PageableDefault(size = 10, page = 0, sort = {"id"}) Pageable paginacao) {
+    public ResponseEntity<Page<UsuarioAdminResponseDTO>> listarTodos(@PageableDefault(size = 10, page = 0, sort = {"id"}) Pageable paginacao) {
         var usuarios = usuarioService.listarTodos(paginacao);
 
         return ResponseEntity.ok(usuarios);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<UsuarioAdminResponseDTO> buscarPorId(@PathVariable Long id) {
         var usuario = usuarioService.buscarPorId(id);
 
         return ResponseEntity.ok(usuario);
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioResponseDTO> salvar(@RequestBody @Valid UsuarioRequestDTO usuarioDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<UsuarioAdminResponseDTO> salvar(@RequestBody @Valid UsuarioAdminRequestDTO usuarioDTO, UriComponentsBuilder uriBuilder) {
         var usuario = usuarioService.salvar(usuarioDTO);
 
         var uri = uriBuilder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
@@ -42,7 +42,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid UsuarioRequestDTO usuarioDTO) {
+    public ResponseEntity<UsuarioAdminResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid UsuarioAdminRequestDTO usuarioDTO) {
         var usuarioAtualizado = usuarioService.atualizar(id, usuarioDTO);
 
         return ResponseEntity.ok(usuarioAtualizado);

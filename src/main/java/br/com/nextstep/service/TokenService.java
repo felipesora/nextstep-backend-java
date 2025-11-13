@@ -1,6 +1,6 @@
 package br.com.nextstep.service;
 
-import br.com.nextstep.model.Usuario;
+import br.com.nextstep.model.UsuarioAdmin;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -17,7 +17,7 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String gerarToken(Usuario usuario) {
+    public String gerarToken(UsuarioAdmin usuario) {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
