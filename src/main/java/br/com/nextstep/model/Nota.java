@@ -27,11 +27,16 @@ public class Nota {
     @JsonProperty("valor_nota")
     private int valorNota;
 
-    @Column(name = "OBSERVACAO")
+    @Column(name = "OBSERVACAO", length = 400)
     private String observacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_trilha")
     @JsonIgnore
     private Trilha trilha;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario_final")
+    @JsonIgnore
+    private UsuarioFinal usuarioFinal;
 }

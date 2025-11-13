@@ -2,7 +2,7 @@ package br.com.nextstep.controller;
 
 import br.com.nextstep.dto.autenticacao.AutenticacaoDTO;
 import br.com.nextstep.dto.autenticacao.TokenDTO;
-import br.com.nextstep.model.Usuario;
+import br.com.nextstep.model.UsuarioAdmin;
 import br.com.nextstep.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class AutenticacaoController {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
         var authentication = manager.authenticate(authenticationToken);
 
-        var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+        var tokenJWT = tokenService.gerarToken((UsuarioAdmin) authentication.getPrincipal());
         return ResponseEntity.ok(new TokenDTO(tokenJWT));
     }
 }

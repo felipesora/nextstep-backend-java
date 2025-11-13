@@ -24,7 +24,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario implements UserDetails {
+public class UsuarioAdmin implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ns_admin_usuario_seq")
