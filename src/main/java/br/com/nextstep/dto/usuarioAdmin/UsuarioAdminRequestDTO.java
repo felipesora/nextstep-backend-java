@@ -1,4 +1,4 @@
-package br.com.nextstep.dto.usuario;
+package br.com.nextstep.dto.usuarioAdmin;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioRequestDTO {
+public class UsuarioAdminRequestDTO {
 
     @NotBlank(message = "O nome é obrigatório")
     @Size(min = 3, max = 150, message = "O nome deve ter entre 3 e 150 caracteres")

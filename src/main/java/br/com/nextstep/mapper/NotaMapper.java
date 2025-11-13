@@ -9,11 +9,14 @@ public class NotaMapper {
 
         Long trilhaId = nota.getTrilha() != null ? nota.getTrilha().getId() : null;
 
+        Long usuarioFinalId = nota.getUsuarioFinal() != null? nota.getUsuarioFinal().getId() : null;
+
         return new NotaResponseDTO(
                 nota.getId(),
                 nota.getValorNota(),
                 nota.getObservacao(),
-                trilhaId
+                trilhaId,
+                usuarioFinalId
         );
     }
 }

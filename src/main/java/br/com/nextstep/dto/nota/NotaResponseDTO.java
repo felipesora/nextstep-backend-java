@@ -24,4 +24,7 @@ public class NotaResponseDTO {
 
     @JsonProperty("id_trilha")
     private Long idTrilha;
+
+    @JsonProperty("id_usuario_final")
+    private Long idUsuarioFinal;
 }

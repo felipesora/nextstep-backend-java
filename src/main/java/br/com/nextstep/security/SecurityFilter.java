@@ -1,6 +1,6 @@
 package br.com.nextstep.security;
 
-import br.com.nextstep.repository.UsuarioRepository;
+import br.com.nextstep.repository.UsuarioAdminRepository;
 import br.com.nextstep.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,7 +20,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioAdminRepository repository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
