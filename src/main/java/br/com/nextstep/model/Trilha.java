@@ -46,6 +46,10 @@ public class Trilha {
     @OrderBy("id ASC")
     private List<Conteudo> conteudos;
 
+    @OneToMany(mappedBy = "trilha", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    @OrderBy("id ASC")
+    private List<Nota> notas;
+
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
 
