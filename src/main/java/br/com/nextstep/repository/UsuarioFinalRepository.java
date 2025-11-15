@@ -1,6 +1,5 @@
 package br.com.nextstep.repository;
 
-import br.com.nextstep.model.Nota;
 import br.com.nextstep.model.UsuarioFinal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
