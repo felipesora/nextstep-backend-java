@@ -114,6 +114,8 @@ public class GlobalExceptionHandler {
     // 500 - Erro genérico inesperado
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> tratarErro500(Exception ex) {
+        ex.printStackTrace(); // <-- ESSENCIAL para ver o erro real no console
+
         var body = Map.of(
                 "error", "Erro interno do servidor",
                 "message", "Ocorreu um erro inesperado."
