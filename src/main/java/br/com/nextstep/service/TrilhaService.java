@@ -26,6 +26,12 @@ public class TrilhaService {
     }
 
     @Transactional(readOnly = true)
+    public Page<TrilhaResponseDTO> listarAtivas(Pageable pageable) {
+        return trilhaRepository.listarTrilhasAtivas(pageable)
+                .map(TrilhaMapper::toResponseDTO);
+    }
+
+    @Transactional(readOnly = true)
     public TrilhaResponseDTO buscarPorId(Long id) {
         var trilha = buscarEntidadeTrilhaPorId(id);
         return TrilhaMapper.toResponseDTO(trilha);

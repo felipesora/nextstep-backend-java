@@ -25,6 +25,12 @@ public class TrilhaController {
         return ResponseEntity.ok(trilhas);
     }
 
+    @GetMapping("/ativas")
+    public ResponseEntity<Page<TrilhaResponseDTO>> listarAtivas(@PageableDefault(size = 10, page = 0, sort = {"id"}) Pageable paginacao) {
+        var trilhas = trilhaService.listarAtivas(paginacao);
+        return ResponseEntity.ok(trilhas);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<TrilhaResponseDTO> buscarPorId(@PathVariable Long id) {
         var trilha = trilhaService.buscarPorId(id);
