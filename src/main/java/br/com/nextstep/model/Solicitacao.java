@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "NS_SOLICITACAO_CONTA", uniqueConstraints = {
         @UniqueConstraint(
-                name = "UK_NS_ADMIN_USER_EMAIL",
+                name = "UK_NS_SOLICITACAO_EMAIL",
                 columnNames = "email"
         )}
 )
