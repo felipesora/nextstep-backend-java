@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UsuarioAdminService {
 
@@ -77,5 +79,21 @@ public class UsuarioAdminService {
     private UsuarioAdmin buscarEntidadeUsuarioPorId(Long id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário Administrado com id: " + id + " não encontrado"));
+    }
+
+    @Transactional
+    public  UsuarioAdmin salvarAdminInicial() {
+        String emailAdmin = "admin@email.com";
+
+        if (usuarioRepository.findUsuarioByEmail(emailAdmin).isPresent()) {
+            return usuarioRepository.findUsuarioByEmail(emailAdmin).get();
+        }
+
+        UsuarioAdmin admin = new UsuarioAdmin();
+        admin.setNome("Administrador");
+        admin.setEmail(emailAdmin);
+        admin.setSenha(passwordEncoder.encode("admin123"));
+
+        return usuarioRepository.save(admin);
     }
 }
