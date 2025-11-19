@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/usuarios/final")
 public class UsuarioFinalController {
@@ -29,5 +31,11 @@ public class UsuarioFinalController {
     public ResponseEntity<UsuarioFinalResponseDTO> buscarPorId(@PathVariable Long id) {
         var usuario = usuarioService.buscarPorId(id);
         return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping("/procedure")
+    public ResponseEntity<List<UsuarioFinalResponseDTO>> listarUsuariosFinaisProcedure() {
+        List<UsuarioFinalResponseDTO> usuarios = usuarioService.listarUsuariosFinaisPorProcedure();
+        return ResponseEntity.ok(usuarios);
     }
 }

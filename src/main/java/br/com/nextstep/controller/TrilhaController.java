@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/trilhas")
 public class TrilhaController {
@@ -35,6 +37,12 @@ public class TrilhaController {
     public ResponseEntity<TrilhaResponseDTO> buscarPorId(@PathVariable Long id) {
         var trilha = trilhaService.buscarPorId(id);
         return ResponseEntity.ok(trilha);
+    }
+
+    @GetMapping("/procedure")
+    public ResponseEntity<List<TrilhaResponseDTO>> listarTrilhasProcedure() {
+        List<TrilhaResponseDTO> trilhas = trilhaService.listarTrilhasPorProcedure();
+        return ResponseEntity.ok(trilhas);
     }
 
     @PostMapping
