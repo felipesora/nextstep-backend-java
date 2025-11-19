@@ -13,6 +13,7 @@ public class RabbitConfig {
     public static final String FILA_TRILHAS = "fila-trilhas";
     public static final String FILA_CONTEUDOS = "fila-conteudos";
     public static final String FILA_USUARIOS_ADMIN = "fila-usuarios-admin";
+    public static final String FILA_SOLICITACOES = "fila-solicitacoes";
 
     @Bean
     public Queue trilhasQueue() {
@@ -27,6 +28,11 @@ public class RabbitConfig {
     @Bean
     public Queue usuariosQueue() {
         return new Queue(FILA_USUARIOS_ADMIN, false);
+    }
+
+    @Bean
+    public Queue solicitacoesQueue() {
+        return new Queue(FILA_SOLICITACOES, false);
     }
 
     @Bean

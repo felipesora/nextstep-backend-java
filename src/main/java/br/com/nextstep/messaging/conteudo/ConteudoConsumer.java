@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class ConteudoConsumer {
 
     @RabbitListener(queues = "fila-conteudos")
-    public void processarTrilha(Conteudo conteudo) {
+    public void processarConteudo(Conteudo conteudo) {
         System.out.println("Mensagem recebida da fila: " + conteudo.getTitulo());
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class UsuarioAdminConsumer {
 
     @RabbitListener(queues = "fila-usuarios-admin")
-    public void processarTrilha(UsuarioAdmin usuarioAdmin) {
+    public void processarAdmin(UsuarioAdmin usuarioAdmin) {
         System.out.println("Mensagem recebida da fila: " + usuarioAdmin.getNome());
     }
 }
