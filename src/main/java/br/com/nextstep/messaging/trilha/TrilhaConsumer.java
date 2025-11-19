@@ -1,4 +1,4 @@
-package br.com.nextstep.messaging;
+package br.com.nextstep.messaging.trilha;
 
 import br.com.nextstep.model.Trilha;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

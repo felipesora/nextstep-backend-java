@@ -3,7 +3,7 @@ package br.com.nextstep.service;
 import br.com.nextstep.dto.trilha.TrilhaRequestDTO;
 import br.com.nextstep.dto.trilha.TrilhaResponseDTO;
 import br.com.nextstep.mapper.TrilhaMapper;
-import br.com.nextstep.messaging.TrilhaProducer;
+import br.com.nextstep.messaging.trilha.TrilhaProducer;
 import br.com.nextstep.model.Trilha;
 import br.com.nextstep.model.enums.StatusTrilha;
 import br.com.nextstep.repository.TrilhaRepository;

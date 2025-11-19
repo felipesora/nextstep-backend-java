@@ -1,4 +1,4 @@
-package br.com.nextstep.messaging;
+package br.com.nextstep.messaging.trilha;
 
 import br.com.nextstep.dto.trilha.TrilhaResponseDTO;
 import br.com.nextstep.mapper.TrilhaMapper;
