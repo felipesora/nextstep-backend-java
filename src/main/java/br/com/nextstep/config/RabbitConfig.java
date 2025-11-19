@@ -11,11 +11,17 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     public static final String FILA_TRILHAS = "fila-trilhas";
+    public static final String FILA_CONTEUDOS = "fila-conteudos";
     public static final String FILA_USUARIOS_ADMIN = "fila-usuarios-admin";
 
     @Bean
     public Queue trilhasQueue() {
         return new Queue(FILA_TRILHAS, false);
+    }
+
+    @Bean
+    public Queue conteudosQueue() {
+        return new Queue(FILA_CONTEUDOS, false);
     }
 
     @Bean
