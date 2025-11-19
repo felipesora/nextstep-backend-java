@@ -4,6 +4,7 @@ import br.com.nextstep.dto.usuarioAdmin.UsuarioAdminRequestDTO;
 import br.com.nextstep.dto.usuarioAdmin.UsuarioAdminResponseDTO;
 import br.com.nextstep.exception.RegraNegocioException;
 import br.com.nextstep.mapper.UsuarioAdminMapper;
+import br.com.nextstep.messaging.usuarioAdmin.UsuarioAdminProducer;
 import br.com.nextstep.model.UsuarioAdmin;
 import br.com.nextstep.repository.UsuarioAdminRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +25,9 @@ public class UsuarioAdminService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UsuarioAdminProducer usuarioAdminProducer;
 
     @Transactional(readOnly = true)
     public Page<UsuarioAdminResponseDTO> listarTodos(Pageable pageable) {
@@ -48,6 +52,7 @@ public class UsuarioAdminService {
         usuario.setSenha(passwordEncoder.encode(usuarioRequestDTO.getSenha()));
 
         var usuarioSalvo = usuarioRepository.save(usuario);
+        usuarioAdminProducer.enviarAdminCriado(usuarioSalvo);
         return UsuarioAdminMapper.toResponseDTO(usuarioSalvo);
     }
 

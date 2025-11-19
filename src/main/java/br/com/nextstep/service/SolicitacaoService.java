@@ -4,6 +4,7 @@ import br.com.nextstep.dto.solicitacao.SolicitacaoRequestDTO;
 import br.com.nextstep.dto.solicitacao.SolicitacaoResponseDTO;
 import br.com.nextstep.exception.RegraNegocioException;
 import br.com.nextstep.mapper.SolicitacaoMapper;
+import br.com.nextstep.messaging.solicitacao.SolicitacaoProducer;
 import br.com.nextstep.model.Solicitacao;
 import br.com.nextstep.repository.SolicitacaoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,6 +20,9 @@ public class SolicitacaoService {
 
     @Autowired
     private SolicitacaoRepository solicitacaoRepository;
+
+    @Autowired
+    private SolicitacaoProducer solicitacaoProducer;
 
     @Transactional(readOnly = true)
     public Page<SolicitacaoResponseDTO> listarTodos(Pageable pageable) {
@@ -42,6 +46,7 @@ public class SolicitacaoService {
         var solicitacao = SolicitacaoMapper.toEntity(solicitacaoRequestDTO);
 
         var solicitacaoSalva = solicitacaoRepository.save(solicitacao);
+        solicitacaoProducer.enviarSolicitacaoCriada(solicitacaoSalva);
         return SolicitacaoMapper.toResponseDTO(solicitacaoSalva);
     }
 
