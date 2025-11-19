@@ -3,6 +3,7 @@ package br.com.nextstep.service;
 import br.com.nextstep.dto.conteudo.ConteudoRequestDTO;
 import br.com.nextstep.dto.conteudo.ConteudoResponseDTO;
 import br.com.nextstep.mapper.ConteudoMapper;
+import br.com.nextstep.messaging.conteudo.ConteudoProducer;
 import br.com.nextstep.model.Conteudo;
 import br.com.nextstep.repository.ConteudoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,6 +22,9 @@ public class ConteudoService {
     @Autowired
     private TrilhaService trilhaService;
 
+    @Autowired
+    private ConteudoProducer conteudoProducer;
+
     @Transactional(readOnly = true)
     public Page<ConteudoResponseDTO> listarTodos(Pageable pageable) {
         return conteudoRepository.findAllByOrderByIdAsc(pageable)
@@ -37,6 +41,7 @@ public class ConteudoService {
     public ConteudoResponseDTO salvar(ConteudoRequestDTO conteudoRequestDTO) {
         var trilha = trilhaService.buscarEntidadeTrilhaPorId(conteudoRequestDTO.getIdTrilha());
         var conteudo = ConteudoMapper.toEntity(conteudoRequestDTO, trilha);
+        conteudoProducer.enviarConteudoCriada(conteudo);
         return ConteudoMapper.toResponseDTO(conteudoRepository.save(conteudo));
     }
 
